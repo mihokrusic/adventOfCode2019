@@ -1,31 +1,41 @@
-const part_one = (input) => {
-	var sum = 0;
-	for (var i = 0; i < input.length; i++) {
+const fs = require('fs');
 
-		var nextLocation = (i === input.length - 1 ? 0 : i + 1);
-		if (input[i] === input[nextLocation]) {
-			sum += +input[i];
-		}
-	}
-	return sum;
+function getFuel(mass) {
+    return Math.trunc(mass / 3) - 2;
+}
+
+function getRecursiveFuel(mass) {
+    let finalMass = 0;
+    let currentMass = mass;
+    let fuel = getFuel(currentMass);
+    while (fuel > 0) {
+        finalMass += fuel;
+        currentMass = fuel;
+        fuel = getFuel(currentMass);
+    }
+    return finalMass;
+}
+
+const partOne = () => {
+    let fuel = 0;
+    const inputMass = fs.readFileSync('./inputs/01.txt', 'utf-8').split(/\r?\n/);
+    inputMass.forEach(mass => (fuel += getFuel(+mass)));
+
+    return fuel;
 };
 
-const part_two = (input) => {
-	var sum = 0;
-	var checkAhead = (input.length / 2);
+const partTwo = () => {
+    let fuel = 0;
+    const inputMass = fs.readFileSync('./inputs/01.txt', 'utf-8').split(/\r?\n/);
+    inputMass.forEach(mass => (fuel += getRecursiveFuel(+mass)));
 
-	for (var i = 0; i < input.length; i++) {
-		var nextLocation = (i + checkAhead);
-		if (nextLocation >= input.length)
-			nextLocation-=input.length;
-		if (input[i] === input[nextLocation]) {
-			sum += +input[i];
-		}
-	}
-	return sum;
+    return fuel;
 };
 
 module.exports = {
-	part_one: part_one,
-	part_two: part_two
-}
+    day: 1,
+    getFuel: getFuel,
+    getRecursiveFuel: getRecursiveFuel,
+    partOne: partOne,
+    partTwo: partTwo,
+};
