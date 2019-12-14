@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const partOne = input => {
+const intcode = input => {
     const program = input.split(',').map(i => +i);
     let currentIndex = 0;
     let running = true;
@@ -34,7 +34,7 @@ const partOneRealInput = () => {
     program[1] = 12;
     program[2] = 2;
 
-    return partOne(program.join(','));
+    return intcode(program.join(','));
 };
 
 const partTwoRealInput = () => {
@@ -45,7 +45,7 @@ const partTwoRealInput = () => {
         for (let j = 0; j <= 99; j++) {
             program[1] = i;
             program[2] = j;
-            const result = partOne(program.join(','));
+            const result = intcode(program.join(','));
 
             if (result === 19690720) {
                 return 100 * i + j;
@@ -57,8 +57,8 @@ const partTwoRealInput = () => {
 };
 
 module.exports = {
-    day: 1,
-    partOne: partOne,
+    day: 2,
+    intcode: intcode,
     partOneRealInput: partOneRealInput,
     partTwoRealInput: partTwoRealInput,
 };
