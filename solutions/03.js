@@ -1,16 +1,13 @@
 const fs = require('fs');
 
 const findIntersection = (path, firstPath, wireToCheck) => {
-    const pathVert = path.fromX === path.toX;
     for (let i = 0; i < wireToCheck.length; i++) {
+        const pathToCheck = wireToCheck[i];
+
         if (firstPath && i === 0) {
             continue;
         }
-
-        const pathToCheck = wireToCheck[i];
-        const pathToCheckVert = pathToCheck.fromX === pathToCheck.toX;
-
-        if ((pathVert && pathToCheckVert) || (!pathVert && !pathToCheckVert)) {
+        if (path.vert === pathToCheck.vert) {
             continue;
         }
 
@@ -24,7 +21,7 @@ const findIntersection = (path, firstPath, wireToCheck) => {
         const minPathToCheckY = Math.min(pathToCheck.fromY, pathToCheck.toY);
         const maxPathToCheckY = Math.max(pathToCheck.fromY, pathToCheck.toY);
 
-        if (pathVert) {
+        if (pathToCheck.horz) {
             if (minPathToCheckX <= path.fromX && maxPathToCheckX >= path.toX && minPathToCheckY <= maxY && maxPathToCheckY >= minY) {
                 return {
                     x: path.fromX,
@@ -32,7 +29,7 @@ const findIntersection = (path, firstPath, wireToCheck) => {
                 };
             }
         }
-        if (!pathVert) {
+        if (pathToCheck.vert) {
             if (minPathToCheckY <= path.fromY && maxPathToCheckY >= path.toY && minPathToCheckX <= maxX && maxPathToCheckX >= minX) {
                 return {
                     x: minPathToCheckX,
@@ -56,19 +53,19 @@ const getDistForClosestInt = wires => {
             const moves = +direction.substr(1);
             switch (direction[0]) {
                 case 'R':
-                    wirePath.push({ fromX: current.x, fromY: current.y, toX: current.x + moves, toY: current.y });
+                    wirePath.push({ fromX: current.x, fromY: current.y, toX: current.x + moves, toY: current.y, vert: false, horz: true });
                     current.x += moves;
                     break;
                 case 'U':
-                    wirePath.push({ fromX: current.x, fromY: current.y, toX: current.x, toY: current.y + moves });
+                    wirePath.push({ fromX: current.x, fromY: current.y, toX: current.x, toY: current.y + moves, vert: true, horz: false });
                     current.y += moves;
                     break;
                 case 'L':
-                    wirePath.push({ fromX: current.x, fromY: current.y, toX: current.x - moves, toY: current.y });
+                    wirePath.push({ fromX: current.x, fromY: current.y, toX: current.x - moves, toY: current.y, vert: false, horz: true });
                     current.x -= moves;
                     break;
                 case 'D':
-                    wirePath.push({ fromX: current.x, fromY: current.y, toX: current.x, toY: current.y - moves });
+                    wirePath.push({ fromX: current.x, fromY: current.y, toX: current.x, toY: current.y - moves, vert: true, horz: false });
                     current.y -= moves;
                     break;
             }
