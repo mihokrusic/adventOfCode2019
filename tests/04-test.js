@@ -8,6 +8,6 @@ describe(`Day ${day.day}`, () => {
     });
 
     describe('Part 2', () => {
-        it('check puzzle input', () => assert.equal(579, day.getValidPasswordCount(353096, 843212)));
+        it('check puzzle input', () => assert.equal(358, day.getValidPasswordCountPart2(353096, 843212)));
     });
 });
