@@ -1,5 +1,5 @@
-const dayNumber = '04';
+const dayNumber = '05';
 const day = require('./solutions/' + dayNumber + '.js');
 
-console.log(day.getValidPasswordCount(353096, 843212));
-console.log(day.getValidPasswordCountPart2(353096, 843212));
+//console.log(day.intcode('1002,4,3,4,33'));
+console.log(day.partOneRealInput());
