@@ -9,5 +9,7 @@ describe(`Day ${day.day}`, () => {
     });
 
     describe('Part 2', () => {
+        it('check test input', () => assert.equal(4, day.part2Test()));
+        it('check puzzle input', () => assert.equal(241, day.part2Puzzle()));
     });
 });
