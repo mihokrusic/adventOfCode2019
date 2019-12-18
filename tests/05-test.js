@@ -1,4 +1,5 @@
 const assert = require('assert');
+const assert = require('assert');
 
 const day = require('../solutions/05.js');
 
