@@ -3,7 +3,6 @@ const getParamValue = (program, index, mode, relativeBase) => {
     let currentIndexValue = program[index];
     switch (mode) {
         case '0':
-            //if (typeof program[currentIndexValue] === 'undefined')
             value = program[currentIndexValue] || 0;
             break;
         case '1':
@@ -14,6 +13,20 @@ const getParamValue = (program, index, mode, relativeBase) => {
             break;
     }
     return value;
+};
+
+const getWriteIndex = (program, index, mode, relativeBase) => {
+    let newIndex = 0;
+    let currentIndexValue = program[index];
+    switch (mode) {
+        case '0':
+            newIndex = currentIndexValue || 0;
+            break;
+        case '2':
+            newIndex = relativeBase + currentIndexValue;
+            break;
+    }
+    return newIndex;
 };
 
 const intcode = (programInput, inputs) => {
@@ -29,25 +42,29 @@ const intcode = (programInput, inputs) => {
         let currentOpcode = currentCommand.substr(3, 2);
         let result = 0,
             value1 = 0,
-            value2 = 0;
+            value2 = 0,
+            value3 = 0;
 
         switch (currentOpcode) {
             case '01':
                 value1 = getParamValue(program, currentIndex + 1, currentCommand[2], relativeBase);
                 value2 = getParamValue(program, currentIndex + 2, currentCommand[1], relativeBase);
+                value3 = getWriteIndex(program, currentIndex + 3, currentCommand[0], relativeBase);
                 result = value1 + value2;
-                program[program[currentIndex + 3]] = result;
+                program[value3] = result;
                 currentIndex += 4;
                 break;
             case '02':
                 value1 = getParamValue(program, currentIndex + 1, currentCommand[2], relativeBase);
                 value2 = getParamValue(program, currentIndex + 2, currentCommand[1], relativeBase);
+                value3 = getWriteIndex(program, currentIndex + 3, currentCommand[0], relativeBase);
                 result = value1 * value2;
-                program[program[currentIndex + 3]] = result;
+                program[value3] = result;
                 currentIndex += 4;
                 break;
             case '03':
-                program[program[currentIndex + 1]] = inputs[lastUsedInput];
+                value1 = getWriteIndex(program, currentIndex + 1, currentCommand[2], relativeBase);
+                program[value1] = inputs[lastUsedInput];
                 lastUsedInput++;
                 currentIndex += 2;
                 break;
@@ -69,13 +86,15 @@ const intcode = (programInput, inputs) => {
             case '07':
                 value1 = getParamValue(program, currentIndex + 1, currentCommand[2], relativeBase);
                 value2 = getParamValue(program, currentIndex + 2, currentCommand[1], relativeBase);
-                program[program[currentIndex + 3]] = value1 < value2 ? 1 : 0;
+                value3 = getWriteIndex(program, currentIndex + 3, currentCommand[0], relativeBase);
+                program[value3] = value1 < value2 ? 1 : 0;
                 currentIndex += 4;
                 break;
             case '08':
                 value1 = getParamValue(program, currentIndex + 1, currentCommand[2], relativeBase);
                 value2 = getParamValue(program, currentIndex + 2, currentCommand[1], relativeBase);
-                program[program[currentIndex + 3]] = value1 === value2 ? 1 : 0;
+                value3 = getWriteIndex(program, currentIndex + 3, currentCommand[0], relativeBase);
+                program[value3] = value1 === value2 ? 1 : 0;
                 currentIndex += 4;
                 break;
             case '09':
