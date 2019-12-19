@@ -25,7 +25,8 @@ const getCombinationResult = (program, run) => {
     let lastOutput = 0;
 
     for (let i = 0; i < 5; i++) {
-        lastOutput = intcode(program, [run[i], lastOutput]).lastOutput;
+        const output = intcode(program, [run[i], lastOutput]).output;
+        lastOutput = output[output.length - 1];
     }
 
     return lastOutput;

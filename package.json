@@ -29,7 +29,8 @@
         "test22": "mocha tests/22-test.js",
         "test23": "mocha tests/23-test.js",
         "test24": "mocha tests/24-test.js",
-        "test25": "mocha tests/25-test.js"
+        "test25": "mocha tests/25-test.js",
+        "test-intcode": "mocha tests/intcode-test.js"
     },
     "author": "Miho Krusic",
     "license": "ISC",
