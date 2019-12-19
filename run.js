@@ -1,4 +1,4 @@
-const dayNumber = '08';
+const dayNumber = '05';
 const day = require('./solutions/' + dayNumber + '.js');
 
-console.log(day.part2Puzzle());
+day.testRealInput(1);

@@ -8,7 +8,7 @@ const intcode = (programInput, inputs) => {
     let lastUsedInput = 0;
     let running = true;
 
-    let lastOutputValue = 0;
+    let lastOutput = 0;
     while (running) {
         let currentCommand = program[currentIndex].toString().padStart(5, '0');
         let currentOpcode = currentCommand.substr(3, 2);
@@ -38,7 +38,7 @@ const intcode = (programInput, inputs) => {
                 break;
             case '04':
                 value1 = getParamValue(program, currentIndex + 1, currentCommand[2]);
-                lastOutputValue = value1;
+                lastOutput = value1;
                 currentIndex += 2;
                 break;
             case '05':
@@ -69,7 +69,7 @@ const intcode = (programInput, inputs) => {
         }
     }
 
-    return lastOutputValue;
+    return { program, lastOutput };
 };
 
 module.exports = intcode;
