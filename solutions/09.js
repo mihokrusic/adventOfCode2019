@@ -1,16 +1,16 @@
 const fs = require('fs');
-const intcode = require('./intcode');
+const Intcode = require('./intcode');
 
 const part1Puzzle = () => {
     const input = fs.readFileSync('./inputs/09.txt', 'utf-8');
-    const result = intcode(input, [1]);
-    return result.output;
+    const intcode = new Intcode(input);
+    return intcode.run([1]);
 };
 
 const part2Puzzle = () => {
     const input = fs.readFileSync('./inputs/09.txt', 'utf-8');
-    const result = intcode(input, [2]);
-    return result.output;
+    const intcode = new Intcode(input);
+    return intcode.run([2]);
 };
 
 module.exports = {

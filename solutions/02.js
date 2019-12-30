@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Intcode = require('./intcode2');
+const Intcode = require('./intcode');
 
 const executeAndGetFirstInstruction = instructions => {
     const intcode = new Intcode(instructions);

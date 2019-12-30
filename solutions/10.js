@@ -1,5 +1,4 @@
 const fs = require('fs');
-const intcode = require('./intcode');
 
 const getAsteroidsList = textFile => {
     const inputLines = fs.readFileSync(`./inputs/${textFile}`, 'utf-8').split(/\r?\n/);

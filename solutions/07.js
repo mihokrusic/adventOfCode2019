@@ -1,5 +1,5 @@
 const fs = require('fs');
-const intcode = require('./intcode');
+const Intcode = require('./intcode');
 
 const permutator = inputArr => {
     let result = [];
@@ -25,8 +25,9 @@ const getCombinationResult = (program, run) => {
     let lastOutput = 0;
 
     for (let i = 0; i < 5; i++) {
-        const output = intcode(program, [run[i], lastOutput]).output;
-        lastOutput = output[output.length - 1];
+        const intcode = new Intcode(program);
+
+        lastOutput = intcode.run([run[i], lastOutput]);
     }
 
     return lastOutput;
