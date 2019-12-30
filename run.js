@@ -1,5 +1,5 @@
-const dayNumber = '10';
+const dayNumber = '05';
 const day = require('./solutions/' + dayNumber + '.js');
 const intcode = require('./solutions/intcode');
 
-console.log(day.part2('10_6.txt', 11, 13));
+console.log(day.testRealInput(1));

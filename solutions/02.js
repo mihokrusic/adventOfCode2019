@@ -1,13 +1,18 @@
 const fs = require('fs');
-const intcode = require('./intcode');
+const Intcode = require('./intcode2');
+
+const executeAndGetFirstInstruction = instructions => {
+    const intcode = new Intcode(instructions);
+    intcode.run();
+    return intcode.program[0];
+};
 
 const partOneRealInput = () => {
     const input = fs.readFileSync('./inputs/02.txt', 'utf-8').split(',');
     input[1] = 12;
     input[2] = 2;
 
-    const { program } = intcode(input.join(','));
-    return program[0];
+    return executeAndGetFirstInstruction(input.join(','));
 };
 
 const partTwoRealInput = () => {
@@ -18,8 +23,7 @@ const partTwoRealInput = () => {
             input[1] = i;
             input[2] = j;
 
-            const { program } = intcode(input.join(','));
-            result = program[0];
+            result = executeAndGetFirstInstruction(input.join(','));
 
             if (result === 19690720) {
                 return 100 * i + j;
@@ -32,7 +36,7 @@ const partTwoRealInput = () => {
 
 module.exports = {
     day: 2,
-    intcode: intcode,
+    executeAndGetFirstInstruction: executeAndGetFirstInstruction,
     partOneRealInput: partOneRealInput,
     partTwoRealInput: partTwoRealInput,
 };
