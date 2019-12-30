@@ -3,9 +3,9 @@ const fs = require('fs');
 const getOrbitCount = (orbit, level) => {
     let result = level;
     for (let i = 0; i < orbit.children.length; i++) {
-        result += getOrbitCount(orbit.children[i], level + 1)
+        result += getOrbitCount(orbit.children[i], level + 1);
     }
-    return result
+    return result;
 };
 
 const getOrbits = (graph, planet) => {
@@ -21,7 +21,7 @@ const getOrbits = (graph, planet) => {
     }
 
     return result;
-}
+};
 
 const getOrbitTransfers = (graph, from, to) => {
     const fromGraph = getOrbits(graph, from);
@@ -34,14 +34,14 @@ const getOrbitTransfers = (graph, from, to) => {
     }
 
     return 0;
-}
+};
 
-const getOrbitGraph = (input) => {
+const getOrbitGraph = input => {
     const graph = {};
 
     let i = 0;
     while (input.length) {
-        let [ target, source ] = input[i].split(')');
+        let [target, source] = input[i].split(')');
         graph[source] = {
             target,
             source,
@@ -65,8 +65,8 @@ const getOrbitGraph = (input) => {
         graph[current.target].children.push(current);
     }
 
-    return { graph, start};
-}
+    return { graph, start };
+};
 
 const part1Test = () => {
     const input = fs.readFileSync('./inputs/06_1.txt', 'utf-8').split(/\r?\n/);
@@ -75,19 +75,19 @@ const part1Test = () => {
 };
 
 const part1Puzzle = () => {
-    const input = fs.readFileSync('./inputs/06_2.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync('./inputs/06_puzzle.txt', 'utf-8').split(/\r?\n/);
     const { graph, start } = getOrbitGraph(input);
     return getOrbitCount(start, 1);
 };
 
 const part2Test = () => {
-    const input = fs.readFileSync('./inputs/06_3.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync('./inputs/06_2.txt', 'utf-8').split(/\r?\n/);
     const { graph, start } = getOrbitGraph(input);
     return getOrbitTransfers(graph, 'YOU', 'SAN');
 };
 
 const part2Puzzle = () => {
-    const input = fs.readFileSync('./inputs/06_2.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync('./inputs/06_puzzle.txt', 'utf-8').split(/\r?\n/);
     const { graph, start } = getOrbitGraph(input);
     return getOrbitTransfers(graph, 'YOU', 'SAN');
 };
