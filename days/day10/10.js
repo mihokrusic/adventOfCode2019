@@ -1,7 +1,8 @@
 const fs = require('fs');
+const path = require('path');
 
 const getAsteroidsList = textFile => {
-    const inputLines = fs.readFileSync(`./inputs/${textFile}`, 'utf-8').split(/\r?\n/);
+    const inputLines = fs.readFileSync(path.join(__dirname, textFile), 'utf-8').split(/\r?\n/);
     const asteroids = [];
     for (let i = 0; i < inputLines.length; i++) {
         for (let j = 0; j < inputLines[i].length; j++) {

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const getOrbitCount = (orbit, level) => {
     let result = level;
@@ -69,25 +70,25 @@ const getOrbitGraph = input => {
 };
 
 const part1Test = () => {
-    const input = fs.readFileSync('./inputs/06_1.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync(path.join(__dirname, '06_1.txt'), 'utf-8').split(/\r?\n/);
     const { graph, start } = getOrbitGraph(input);
     return getOrbitCount(start, 1);
 };
 
 const part1Puzzle = () => {
-    const input = fs.readFileSync('./inputs/06_puzzle.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync(path.join(__dirname, '06_puzzle.txt'), 'utf-8').split(/\r?\n/);
     const { graph, start } = getOrbitGraph(input);
     return getOrbitCount(start, 1);
 };
 
 const part2Test = () => {
-    const input = fs.readFileSync('./inputs/06_2.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync(path.join(__dirname, '06_2.txt'), 'utf-8').split(/\r?\n/);
     const { graph, start } = getOrbitGraph(input);
     return getOrbitTransfers(graph, 'YOU', 'SAN');
 };
 
 const part2Puzzle = () => {
-    const input = fs.readFileSync('./inputs/06_puzzle.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync(path.join(__dirname, '06_puzzle.txt'), 'utf-8').split(/\r?\n/);
     const { graph, start } = getOrbitGraph(input);
     return getOrbitTransfers(graph, 'YOU', 'SAN');
 };

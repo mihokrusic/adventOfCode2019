@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const findIntersection = (fpath, spath) => {
     if (fpath.vert === spath.vert) {
@@ -120,12 +121,12 @@ const getDistForFewestSteps = input => {
 };
 
 const partOneRealInput = () => {
-    const input = fs.readFileSync('./inputs/03.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync(path.join(__dirname, '03.txt'), 'utf-8').split(/\r?\n/);
     return getDistForClosestInt(input);
 };
 
 const partTwoRealInput = () => {
-    const input = fs.readFileSync('./inputs/03.txt', 'utf-8').split(/\r?\n/);
+    const input = fs.readFileSync(path.join(__dirname, '03.txt'), 'utf-8').split(/\r?\n/);
     return getDistForFewestSteps(input);
 };
 

@@ -1,5 +1,6 @@
 const fs = require('fs');
-const Intcode = require('./intcode');
+const path = require('path');
+const Intcode = require('./../../src/intcode');
 
 const permutator = inputArr => {
     let result = [];
@@ -48,7 +49,7 @@ const getHighestSignal = program => {
 };
 
 const testRealInput = () => {
-    const puzzleInput = fs.readFileSync('./inputs/07.txt', 'utf-8');
+    const puzzleInput = fs.readFileSync(path.join(__dirname, '07.txt'), 'utf-8');
     return getHighestSignal(puzzleInput);
 };
 

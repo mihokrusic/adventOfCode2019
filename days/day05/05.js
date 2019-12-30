@@ -1,8 +1,9 @@
 const fs = require('fs');
-const Intcode = require('./intcode');
+const path = require('path');
+const Intcode = require('./../../src/intcode');
 
 const testRealInput = input => {
-    const programInput = fs.readFileSync('./inputs/05.txt', 'utf-8');
+    const programInput = fs.readFileSync(path.join(__dirname, '05.txt'), 'utf-8');
 
     const intcode = new Intcode(programInput);
     let lastOutput = null,

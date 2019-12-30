@@ -1,6 +1,6 @@
 const assert = require('assert');
 
-const day = require('../solutions/08.js');
+const day = require('./08.js');
 
 describe(`Day ${day.day}`, () => {
     describe('Part 1', () => {

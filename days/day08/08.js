@@ -1,8 +1,9 @@
 const fs = require('fs');
+const path = require('path');
 
 const part1Puzzle = () => {
     const input = fs
-        .readFileSync('./inputs/08.txt', 'utf-8')
+        .readFileSync(path.join(__dirname, '08.txt'), 'utf-8')
         .split('')
         .map(i => +i);
 
@@ -30,7 +31,7 @@ const part1Puzzle = () => {
 
 const part2Puzzle = () => {
     const input = fs
-        .readFileSync('./inputs/08.txt', 'utf-8')
+        .readFileSync(path.join(__dirname, '08.txt'), 'utf-8')
         .split('')
         .map(i => +i);
 

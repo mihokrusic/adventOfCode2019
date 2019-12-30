@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 function getFuel(mass) {
     return Math.trunc(mass / 3) - 2;
@@ -18,7 +19,7 @@ function getRecursiveFuel(mass) {
 
 const partOne = () => {
     let fuel = 0;
-    const inputMass = fs.readFileSync('./inputs/01.txt', 'utf-8').split(/\r?\n/);
+    const inputMass = fs.readFileSync(path.join(__dirname, '01.txt'), 'utf-8').split(/\r?\n/);
     inputMass.forEach(mass => (fuel += getFuel(+mass)));
 
     return fuel;
@@ -26,7 +27,7 @@ const partOne = () => {
 
 const partTwo = () => {
     let fuel = 0;
-    const inputMass = fs.readFileSync('./inputs/01.txt', 'utf-8').split(/\r?\n/);
+    const inputMass = fs.readFileSync(path.join(__dirname, '01.txt'), 'utf-8').split(/\r?\n/);
     inputMass.forEach(mass => (fuel += getRecursiveFuel(+mass)));
 
     return fuel;

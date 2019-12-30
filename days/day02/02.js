@@ -1,5 +1,6 @@
 const fs = require('fs');
-const Intcode = require('./intcode');
+const path = require('path');
+const Intcode = require('./../../src/intcode');
 
 const executeAndGetFirstInstruction = instructions => {
     const intcode = new Intcode(instructions);
@@ -8,7 +9,7 @@ const executeAndGetFirstInstruction = instructions => {
 };
 
 const partOneRealInput = () => {
-    const input = fs.readFileSync('./inputs/02.txt', 'utf-8').split(',');
+    const input = fs.readFileSync(path.join(__dirname, '02.txt'), 'utf-8').split(',');
     input[1] = 12;
     input[2] = 2;
 
@@ -16,7 +17,7 @@ const partOneRealInput = () => {
 };
 
 const partTwoRealInput = () => {
-    const input = fs.readFileSync('./inputs/02.txt', 'utf-8').split(',');
+    const input = fs.readFileSync(path.join(__dirname, '02.txt'), 'utf-8').split(',');
 
     for (let i = 0; i <= 99; i++) {
         for (let j = 0; j <= 99; j++) {
