@@ -98,8 +98,10 @@ const part2 = (textFile, x, y) => {
     const asteroids = getAsteroidsList(textFile);
     const location = asteroids.find(a => a.x === x && a.y === y);
 
+    const TARGET_ASTEROID = 200;
+
     let zappedAsteroids = 0;
-    while (zappedAsteroids < 200) {
+    while (zappedAsteroids < TARGET_ASTEROID) {
         let lines = getAsteroidLines(location, asteroids);
         lines.sort((a, b) => {
             if (a.quadrant < b.quadrant) {
@@ -113,8 +115,8 @@ const part2 = (textFile, x, y) => {
             return +a.slope < +b.slope ? -1 : 1;
         });
 
-        if (zappedAsteroids + lines.length > 200) {
-            const target = lines[200 - zappedAsteroids - 1];
+        if (zappedAsteroids + lines.length > TARGET_ASTEROID) {
+            const target = lines[TARGET_ASTEROID - zappedAsteroids - 1];
             return target.x * 100 + target.y;
         }
 
