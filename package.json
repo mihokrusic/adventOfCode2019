@@ -30,7 +30,7 @@
         "test23": "mocha days/day23/23-test.js",
         "test24": "mocha days/day24/24-test.js",
         "test25": "mocha days/day25/25-test.js",
-        "test-intcode": "mocha tests/intcode-test.js"
+        "test-intcode": "mocha src/intcode-test.js"
     },
     "author": "Miho Krusic",
     "license": "ISC",

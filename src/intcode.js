@@ -5,6 +5,7 @@ class Intcode {
         this.relativeBase = 0;
         this.running = false;
         this.finished = false;
+        this.stopReason = '';
     }
 
     getParamValue(index, mode) {
@@ -76,6 +77,7 @@ class Intcode {
                 case '03':
                     if (remainingInputs.length === 0) {
                         this.running = false;
+                        this.stopReason = 'input';
                         break;
                     }
 
@@ -88,6 +90,7 @@ class Intcode {
                     this.currentIndex += 2;
                     output = value1;
                     this.running = false;
+                    this.stopReason = 'output';
                     break;
                 case '05':
                     value1 = this.getParamValue(this.currentIndex + 1, currentCommand[2]);
@@ -121,6 +124,7 @@ class Intcode {
                 case '99':
                     this.running = false;
                     this.finished = true;
+                    this.stopReason = 'done';
                     break;
             }
         }

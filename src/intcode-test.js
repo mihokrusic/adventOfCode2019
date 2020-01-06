@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Intcode = require('../solutions/intcode.js');
+const Intcode = require('./intcode.js');
 
 describe(`General intcode program tests`, () => {
     describe('Part 1', () => {
